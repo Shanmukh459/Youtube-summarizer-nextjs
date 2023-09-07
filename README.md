@@ -22,5 +22,5 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - Google fonts: [Roboto Mono](https://fonts.google.com/specimen/Roboto+Mono?query=roboto+mono), [Montserrat](https://fonts.google.com/specimen/Montserrat?query=montserrat), that are natively hosted on Nextjs server have been used to style
 the text content in the app.
 - ENUM data structure has been implemented in Javascript to model different api request states (initial, loading, finished). Corresponding code can be found in src/utils/converted-enum.js
-- Bars loader spinner from [react-loader-spinner npm package]() has been used in the app to render UI that is representative of the loading state of video transcription/api request to the back-end.
+- Bars loader spinner from [react-loader-spinner npm package](https://mhnpd.github.io/react-loader-spinner/docs/components/bars) has been used in the app to render UI that is representative of the loading state of video transcription/api request to the back-end.
 

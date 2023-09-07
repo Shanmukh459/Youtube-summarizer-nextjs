@@ -1,95 +1,106 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+"use client";
+
+// import { YoutubeLoader } from "langchain/document_loaders/web/youtube";
+import { useState } from "react";
+import { ValidTaskStatesEnum } from "@/utils/task";
+import { BarsLoaderSpinner } from "./loader-spinners";
+import { robotoMono, montserrat } from "./fonts";
+
+import classes from "./page.module.css";
+import VideoMetadata from "./components/VideoMetadata";
 
 export default function Home() {
+  const [videoUrl, setVideoUrl] = useState("");
+  const [taskStatus, setTaskStatus] = useState(ValidTaskStatesEnum.INITIAL);
+  const [transcriptionDocsList, setTranscriptionDocsList] = useState(undefined);
+  const [isTranscribeButtonDisabled, setIsTranscribeButtonDisabled] =
+    useState(false);
+
+  function onInputChange(changeEvent) {
+    if (changeEvent.target.name === "video-url") {
+      setVideoUrl(changeEvent.target.value);
+    }
+  }
+
+  async function onTranscribe(formSubmitEvent) {
+    formSubmitEvent.preventDefault();
+    setIsTranscribeButtonDisabled(true); // disable transcribe button
+
+    // const loader = YoutubeLoader.createFromUrl(videoUrl, {
+    //   language: "en",
+    //   addVideoInfo: true,
+    // });
+
+    const formData = new FormData();
+    formData.append("videoUrl", videoUrl);
+
+    setTaskStatus(ValidTaskStatesEnum.LOADING);
+
+    // const transcribedDocs = await loader.load();
+    // setTaskStatus(ValidTaskStatesEnum.FINISHED);
+    // setTranscriptionDocsList(transcribedDocs);
+    // setIsTranscribeButtonDisabled(false); // re-enable transcribe button
+    // console.log(docs);
+
+    const youtubeVideoTranscriptionResponse = await fetch("/api", {
+      method: "POST",
+      body: formData,
+    });
+
+    const transcribedDocs = await youtubeVideoTranscriptionResponse.json();
+    setTranscriptionDocsList(transcribedDocs);
+    setTaskStatus(ValidTaskStatesEnum.FINISHED);
+    setIsTranscribeButtonDisabled(false); // re-enable transcribe button
+  }
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
+    <div className={classes.formAndContentContainer}>
+      <h1 className={`${classes.pageHeader} ${robotoMono.className}`}>
+        YouTube Video Transcription
+      </h1>
+      <form className={classes.videoTranscriptionForm} onSubmit={onTranscribe}>
+        <input
+          name="video-url"
+          value={videoUrl}
+          className={classes.videoUrlInput}
+          onChange={onInputChange}
+          placeholder="Enter YouTube Video Url"
+          disabled={isTranscribeButtonDisabled}
         />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
+        <button
+          name="video-transcribe"
+          className={classes.transcribeButton}
+          type="submit"
+          disabled={isTranscribeButtonDisabled}
         >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
+          Transcribe
+        </button>
+      </form>
+      {taskStatus === ValidTaskStatesEnum.LOADING && <BarsLoaderSpinner />}
+      {transcriptionDocsList && (
+        <>
+          <hr className={classes.dottedHr} />
+          <ul>
+            {transcriptionDocsList.map((doc, idx) => {
+              const docMetadata = doc?.metadata;
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+              return (
+                <li key={idx}>
+                  <VideoMetadata videoMetadataObj={docMetadata ?? {}} />
+                  <div className={classes.videoDetailsContainer}>
+                    <h2
+                      className={`${classes.pageSubHeader} ${robotoMono.className}`}
+                    >
+                      Video Transcription
+                    </h2>
+                    <p className={classes.normalText}>{doc?.pageContent}</p>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        </>
+      )}
+    </div>
+  );
 }

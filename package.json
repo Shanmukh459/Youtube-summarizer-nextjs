@@ -1,18 +1,23 @@
 {
-  "name": "sneak-city-youtube-content-qa",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "eslint": "8.47.0",
-    "eslint-config-next": "13.4.19",
-    "next": "13.4.19",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
-  }
+    "name": "youtubeloader-error-langchainjs",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint"
+    },
+    "dependencies": {
+        "eslint": "8.47.0",
+        "eslint-config-next": "13.4.19",
+        "langchain": "^0.0.131",
+        "next": "13.4.19",
+        "react": "18.2.0",
+        "react-dom": "18.2.0",
+        "react-loader-spinner": "^5.3.4",
+        "youtube-transcript": "^1.0.6",
+        "youtubei.js": "^5.8.0",
+        "zod-form-data": "^2.0.1"
+    }
 }

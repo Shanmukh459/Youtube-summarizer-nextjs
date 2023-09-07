@@ -1,4 +1,7 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# TypeError: URL is not a constructor
+## Debug and Fix - YoutubeLoader error (🦜️🔗 Lanchain JS Library)
+
+This is the repo of a simple [Next.js](https://nextjs.org/) app to transcribe YouTube videos with a given URL, using [YoutubeLoader (document loader) from LangChain JS library](https://js.langchain.com/docs/modules/data_connection/document_loaders/integrations/web_loaders/youtube) . It has been created as part of a [YouTube video](https://youtu.be/oxJ7PYmx6V4) that discusses the process of debugging and fixing the "TypeError: URL is not a constructor" error encountered while using the YoutubeLoader to carry out the video transcription task. 
 
 ## Getting Started
 
@@ -14,21 +17,10 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Additional Notes
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- Google fonts: [Roboto Mono](https://fonts.google.com/specimen/Roboto+Mono?query=roboto+mono), [Montserrat](https://fonts.google.com/specimen/Montserrat?query=montserrat), that are natively hosted on Nextjs server have been used to style
+the text content in the app.
+- ENUM data structure has been implemented in Javascript to model different api request states (initial, loading, finished). Corresponding code can be found in src/utils/converted-enum.js
+- Bars loader spinner from [react-loader-spinner npm package]() has been used in the app to render UI that is representative of the loading state of video transcription/api request to the back-end.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.

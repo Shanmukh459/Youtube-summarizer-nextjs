@@ -1,4 +1,4 @@
-// Below code written based on the blog
+// Below code has been implemented based on the blog
 // written by Dmitri Pavlutin at this url:
 // https://dmitripavlutin.com/javascript-enum/
 // and Mozilla docs at this url:

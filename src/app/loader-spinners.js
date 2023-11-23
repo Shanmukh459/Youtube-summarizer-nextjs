@@ -3,7 +3,7 @@ import classes from "./page.module.css";
 
 const loaderSpinnerHeight = 80;
 const loaderSpinnerWidth = 80;
-const loaderSpinnerColor = "#1f5f9c";
+const loaderSpinnerColor = "#cce6f4";
 
 export const BarsLoaderSpinner = () => (
   <Bars

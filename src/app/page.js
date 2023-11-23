@@ -24,7 +24,7 @@ export default function Home() {
 
   const llm = new ChatOpenAI({ openAIApiKey })
 
-  const queryTemplate = 'Summarize this yoube video subtitle: {subtitle}'
+  const queryTemplate = 'Summarize this youtube video subtitle: {subtitle}'
 
   const queryPrompt = PromptTemplate.fromTemplate(queryTemplate)
 
@@ -50,8 +50,9 @@ export default function Home() {
       method: "POST",
       body: formData,
     });
-
+    console.log(youtubeVideoTranscriptionResponse)
     const transcribedDocs = await youtubeVideoTranscriptionResponse.json();
+    console.log(transcribedDocs)
     setTranscriptionDocsList(transcribedDocs);
     console.log(transcribedDocs[0].pageContent)
     const response = await queryChain.invoke({subtitle: transcribedDocs['0'].pageContent})

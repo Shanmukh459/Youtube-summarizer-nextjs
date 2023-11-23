@@ -30,7 +30,6 @@ export default function Home() {
 
   const queryChain = queryPrompt.pipe(llm)
 
-  console.log("Output: " + output)
   function onInputChange(changeEvent) {
     if (changeEvent.target.name === "video-url") {
       setVideoUrl(changeEvent.target.value);

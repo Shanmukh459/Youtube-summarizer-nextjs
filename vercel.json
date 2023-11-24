@@ -2,14 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "layout.js", 
+      "src": "app/layout.js", 
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "layout.js"
+      "dest": "app/layout.js"
     }
   ]
 }

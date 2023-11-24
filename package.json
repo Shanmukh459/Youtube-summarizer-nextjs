@@ -12,7 +12,7 @@
         "eslint": "8.47.0",
         "eslint-config-next": "13.4.19",
         "langchain": "^0.0.131",
-        "next": "13.4.19",
+        "next": "^13.4.19",
         "react": "18.2.0",
         "react-dom": "18.2.0",
         "react-loader-spinner": "^5.3.4",

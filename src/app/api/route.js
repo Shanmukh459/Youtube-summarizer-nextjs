@@ -22,5 +22,7 @@ export async function POST(request) {
     const transcribedVideoDocsList = await loader.load();
     console.log(transcribedVideoDocsList);
     return NextResponse.json(transcribedVideoDocsList);
+  } else {
+    return "Error"
   }
 }

@@ -1,5 +1,5 @@
 {
-    "name": "youtubeloader-error-langchainjs",
+    "name": "youtube-transcript-summarizer",
     "version": "0.1.0",
     "private": true,
     "scripts": {

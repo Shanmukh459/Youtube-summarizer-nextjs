@@ -46,7 +46,7 @@ export default function Home() {
 
     setTaskStatus(ValidTaskStatesEnum.LOADING);
 
-    const youtubeVideoTranscriptionResponse = await fetch(`/api`, {
+    const youtubeVideoTranscriptionResponse = await fetch("/api", {
       method: "POST",
       body: formData,
     });

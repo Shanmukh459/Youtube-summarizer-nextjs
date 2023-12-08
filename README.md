@@ -1,7 +1,34 @@
-# TypeError: URL is not a constructor
-## Debug and Fix - YoutubeLoader error (🦜️🔗 Lanchain JS Library)
+# Youtube Transcript Summarizer
 
-This is the repo of a simple [Next.js](https://nextjs.org/) app to transcribe YouTube videos with a given URL, using [YoutubeLoader (document loader) from LangChain JS library](https://js.langchain.com/docs/modules/data_connection/document_loaders/integrations/web_loaders/youtube) . It has been created as part of a [YouTube video](https://youtu.be/oxJ7PYmx6V4) that discusses the process of debugging and fixing the "TypeError: URL is not a constructor" error encountered while using the YoutubeLoader to carry out the video transcription task. 
+- This repo is a project for CMPE-285 (Web UI Design)
+- This is the repo of a simple [Next.js](https://nextjs.org/) app to transcribe YouTube videos with a given URL
+- This uses [YoutubeLoader (document loader) from LangChain JS library](https://js.langchain.com/docs/modules/data_connection/document_loaders/integrations/web_loaders/youtube)
+- Bars loader spinner from [react-loader-spinner npm package](https://mhnpd.github.io/react-loader-spinner/docs/components/bars) has been used in the app to render UI that is representative of the loading state of video transcription/api request to the back-end.
+
+## Tech Used
+
+- NextJS
+- Open AI
+- LangChain
+
+# Deployed at
+
+- This is deployed in vercel - https://shanmukh-youtube-summarizer.vercel.app/
+
+# Screenshots
+
+Initial UI screen
+
+![image](https://github.com/Shanmukh459/Youtube-summarizer-nextjs/assets/52078988/220fe336-60a5-48fa-b229-1aeddf8abd04)
+
+UI after submitting the request
+
+![image](https://github.com/Shanmukh459/Youtube-summarizer-nextjs/assets/52078988/9830b5d4-619a-4638-94ae-12100367fb1c)
+
+Screen after request processed
+
+![image](https://github.com/Shanmukh459/Youtube-summarizer-nextjs/assets/52078988/29bc207f-a608-4580-bda5-bc86a43a0204)
+
 
 ## Getting Started
 
@@ -17,10 +44,4 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Additional Notes
-
-- Google fonts: [Roboto Mono](https://fonts.google.com/specimen/Roboto+Mono?query=roboto+mono), [Montserrat](https://fonts.google.com/specimen/Montserrat?query=montserrat), that are natively hosted on Nextjs server have been used to style
-the text content in the app.
-- ENUM data structure has been implemented in Javascript to model different api request states (initial, loading, finished). Corresponding code can be found in src/utils/converted-enum.js
-- Bars loader spinner from [react-loader-spinner npm package](https://mhnpd.github.io/react-loader-spinner/docs/components/bars) has been used in the app to render UI that is representative of the loading state of video transcription/api request to the back-end.
-
+## _Thank you!_
